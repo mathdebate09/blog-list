@@ -4,9 +4,9 @@
   "description": "Coursework-FSO Part 4",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "node --test"
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test node --test"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-async-errors": "^3.1.1",
     "mongoose": "^8.4.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.1"
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.1",
+    "supertest": "^7.0.0"
   }
 }
