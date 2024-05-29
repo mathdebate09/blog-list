@@ -1,0 +1,16 @@
+GET http://localhost:3003/api/blogs
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+// Whenever testing the POST request, make sure to include the token in the Authorization header
+Authorization: Bearer :token
+
+{
+  "title": "Test Blog",
+  "author": "Test Author",
+  "url": "http://test.com",
+  "likes": 0
+}
+###
+DELETE http://localhost:3003/api/blogs/:id
+Authorization: Bearer :token
