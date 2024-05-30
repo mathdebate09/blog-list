@@ -22,7 +22,7 @@ const App = () => {
     blogService
       .getAll()
       .then(blogs =>
-        setBlogs(blogs)
+        setBlogs(blogs.sort((a, b) => b.likes - a.likes))
       )
   }, [])
 
@@ -84,6 +84,11 @@ const App = () => {
     window.location.reload();
   }
 
+  const getAllBlogs = async () => {
+    const blogs = await blogService.getAll()
+    setBlogs(blogs.sort((a, b) => b.likes - a.likes))
+  }
+
   const handleLikes = (id) => {
     const blog = blogs.find(n => n.id === id)
     const changedBlog = { ...blog, likes: blog.likes + 1 }
@@ -92,11 +97,31 @@ const App = () => {
       .update(id, changedBlog)
       .then(returnedBlog => {
         setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
+        getAllBlogs()
       })
       .catch(error => {
         setMessage(
           `Your like to '${blog.title}' wasn't update on server`
         )
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      })
+  }
+
+  const deleteBlog = id => {
+    blogService
+      .deleteBlog(id)
+      .then(returnedBlog => {
+        setBlogs(blogs.filter(blog => blog.id !== id))
+        setMessage('Your blog was removed')
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+        getAllBlogs()
+      })
+      .catch(error => {
+        setMessage('Invalid action - you can delete only your blog')
         setTimeout(() => {
           setMessage(null)
         }, 5000)
@@ -130,7 +155,7 @@ const App = () => {
       </div>
       }
       {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} handleLikes={handleLikes} />
+        <Blog key={blog.id} blog={blog} handleLikes={handleLikes} deleteBlog={deleteBlog} />
       )}
     </div>
   )

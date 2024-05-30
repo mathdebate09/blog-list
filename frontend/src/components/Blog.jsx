@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Blog = ({ blog, handleLikes }) => {
+const Blog = ({ blog, handleLikes, deleteBlog }) => {
   const [fullVisibility, setFullVisibility] = useState(false)
 
   const toggleFullVisibility = () => {
@@ -15,6 +15,12 @@ const Blog = ({ blog, handleLikes }) => {
     marginBottom: 5
   }
 
+  const handleDelete = (id) => {
+  if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
+    deleteBlog(id)
+  }
+}
+
   return (
     <div style={blogStyle}>
       <div className="">
@@ -22,9 +28,10 @@ const Blog = ({ blog, handleLikes }) => {
       </div>
       {fullVisibility && (
         <>
-          <a>{blog.url}</a>
-          <div>likes {blog.likes} <button onClick={() => handleLikes(blog.id)}>likes</button></div>
+          <a href={`https://${blog.url}`} target="_blank" rel="noopener noreferrer" >{blog.url}</a>
+          <div>likes {blog.likes} <button onClick={() => handleLikes(blog.id)}>like</button></div>
           <div>{blog.user.name}</div>
+          <button onClick={() => handleDelete(blog.id)}>remove</button>
         </>
       )}
     </div>

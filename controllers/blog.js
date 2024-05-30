@@ -46,7 +46,7 @@ blogsRouters.delete('/:id', async (request, response, next) => {
         return response.status(204).end()
     }
 
-    return response.status(401).json({ error: 'token invalid' })
+    return response.status(401).json({ error: 'invalid user - only delete your blogs' })
 })
 
 blogsRouters.put('/:id', async (request, response, next) => {
@@ -56,7 +56,8 @@ blogsRouters.put('/:id', async (request, response, next) => {
         title: body.title,
         author: body.author,
         url: body.url,
-        likes: body.likes ? body.likes : 0
+        likes: body.likes ? body.likes : 0,
+        user: body.user.id
     }
 
     const savedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })

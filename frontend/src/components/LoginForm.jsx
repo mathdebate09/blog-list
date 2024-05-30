@@ -1,4 +1,5 @@
 import Notification from './Notification'
+import PropTypes from 'prop-types'
 
 const LoginForm = ({ message, handleLogin, username, handleUsernameChange, password, handlePasswordChange }) => {
     return (
@@ -29,5 +30,13 @@ const LoginForm = ({ message, handleLogin, username, handleUsernameChange, passw
         </div>
     )
 }
+
+LoginForm.propTypes = {
+    handleLogin: PropTypes.func.isRequired,
+    handleUsernameChange: PropTypes.func.isRequired,
+    handlePasswordChange: PropTypes.func.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+  }
 
 export default LoginForm

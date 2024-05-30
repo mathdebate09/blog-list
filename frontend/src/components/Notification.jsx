@@ -5,7 +5,7 @@ const Notification = ({ message }) => {
 
   let classMessage = ''
 
-  if (message.toLowerCase().includes('wrong') || message.toLowerCase().includes('miss')) {
+  if (message.toLowerCase().includes('invalid') || message.toLowerCase().includes('wrong') || message.toLowerCase().includes('miss')) {
     classMessage = 'error note'
   } else {
     classMessage = 'info note'
