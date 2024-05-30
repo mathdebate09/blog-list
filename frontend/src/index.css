@@ -1,0 +1,19 @@
+.note {
+    font-size: 1.3rem;
+    border: 3px solid black;
+    padding:0.2em 0.3em;
+    border-radius:5px;
+    width:fit-content;
+    margin-bottom: 0.8rem;
+    background-color: rgb(241, 236, 236);
+}
+
+.error {
+    border-color: rgb(189, 8, 8);
+    color:rgb(189, 8, 8);
+}
+
+.info {
+    border-color: rgb(5, 199, 5);
+    color:rgb(5, 199, 5);
+}
