@@ -23,7 +23,7 @@ const Blog = ({ blog, handleLikes, deleteBlog }) => {
 
   return (
     <div style={blogStyle}>
-      <div className="">
+      <div className="blog">
         {blog.title} {blog.author} <button onClick={toggleFullVisibility}>view</button>
       </div>
       {fullVisibility && (
