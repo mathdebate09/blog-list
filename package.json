@@ -4,8 +4,11 @@
   "description": "Coursework-FSO Part 4",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
-    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start:prod": "cross-env NODE_ENV=production node index.js",
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "dev:frontend": "cd ./frontend && npm run dev",
+    "dev:backend": "cross-env NODE_ENV=development nodemon index.js",
+    "build": "rm -rf dist && cd ./frontend && npm run build && cp -r dist ../ && rm -rf dist && cd ../",
     "test": "cross-env NODE_ENV=test node --test"
   },
   "repository": {
